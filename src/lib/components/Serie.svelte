@@ -19,7 +19,7 @@
 	});
 </script>
 
-<div class="max-w-sm overflow-hidden rounded-lg bg-white shadow-md">
+<div class="w-full overflow-hidden rounded-lg bg-white shadow-md">
 	<img
 		class="h-48 w-full object-contain"
 		src={serie.logo
