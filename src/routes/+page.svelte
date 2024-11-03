@@ -1,38 +1,19 @@
 <script lang="ts">
-	import data from '$lib/data/series_stats.json';
-	import carClasses from '$lib/data/car_classes.json';
-	import cars from '$lib/data/cars.json';
 	import Serie from '$lib/components/Serie.svelte';
 	import { CarCategory, carCategories } from '$lib/data/constants';
+	import type { PageData } from './$types';
 
-	// Cars
-	let carsPerClass = $derived(
-		carClasses.reduce((acc, carClass) => {
-			return {
-				...acc,
-				[carClass.car_class_id]: carClass.cars_in_class.map((car) => car.car_id)
-			};
-		}, {} as any)
-	);
-	let carsMap = $derived(
-		cars.reduce((acc, car) => {
-			return {
-				...acc,
-				[car.car_id]: car
-			};
-		}, {} as any)
-	);
+	let { data }: { data: PageData } = $props();
 
 	// Filters
 	let searchText = $state('');
-	let searchCar = $state('');
 	let selectedStatus: null | boolean = $state(null);
 	let selectedCategory: null | CarCategory = $state(null);
 
 	// First filter by name and status
 	// Then return first the active series and then the inactive ones, all sorted by name
 	let filteredItems = $derived(
-		data
+		data.series
 			.filter((serie) => {
 				if (
 					searchText !== '' &&
@@ -46,17 +27,6 @@
 				}
 
 				if (selectedCategory !== null && serie.category !== selectedCategory) {
-					return false;
-				}
-
-				if (
-					searchCar !== '' &&
-					!(serie.seasons[0].car_classes || []).some((carClass) =>
-						(carsPerClass[carClass.car_class_id] || []).some((carId: number) =>
-							carsMap[carId].car_name.toLowerCase().includes(searchCar.toLowerCase())
-						)
-					)
-				) {
 					return false;
 				}
 
@@ -78,13 +48,6 @@
 			type="text"
 			placeholder="Filter by name..."
 			bind:value={searchText}
-			class="w-full rounded border border-gray-300 p-2 md:w-1/2"
-		/>
-
-		<input
-			type="text"
-			placeholder="Filter by car..."
-			bind:value={searchCar}
 			class="w-full rounded border border-gray-300 p-2 md:w-1/2"
 		/>
 
