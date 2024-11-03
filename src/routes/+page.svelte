@@ -1,6 +1,6 @@
 <script lang="ts">
 	import data from '$lib/data/series_stats.json';
-	import Event from '$lib/components/Event.svelte';
+	import Serie from '$lib/components/Serie.svelte';
 	import { CarCategory, carCategories } from '$lib/data/constants';
 
 	// Filters
@@ -43,7 +43,10 @@
 			<option value={false}>Inactive</option>
 		</select>
 
-		<select bind:value={selectedCategory} class="w-full rounded border border-gray-300 p-2 md:w-1/2">
+		<select
+			bind:value={selectedCategory}
+			class="w-full rounded border border-gray-300 p-2 md:w-1/2"
+		>
 			<option value={null}>Filter by category</option>
 			{#each Object.keys(carCategories) as category}
 				<option value={category}>{carCategories[category as CarCategory].name}</option>
@@ -52,9 +55,9 @@
 	</div>
 
 	<!-- Grid -->
-	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+	<div class="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-4">
 		{#each filteredItems() as item}
-			<Event serie={item} />
+			<Serie serie={item} />
 		{/each}
 	</div>
 </div>

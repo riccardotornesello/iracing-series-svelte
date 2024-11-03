@@ -26,6 +26,7 @@
 			? 'https://images-static.iracing.com/img/logos/series/' + serie.logo
 			: 'https://via.placeholder.com/300'}
 		alt={serie.series_name}
+		loading="lazy"
 	/>
 
 	<div class="p-4">
