@@ -1,4 +1,4 @@
-import { MONGO_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { MongoClient } from 'mongodb';
 
-export const client = new MongoClient(MONGO_URL);
+export const client = env.MONGO_URL ? new MongoClient(env.MONGO_URL) : null;
