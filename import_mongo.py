@@ -26,35 +26,38 @@ idc = irDataClient(
 )
 
 print("Fetching data from iRacing API...")
-cars = idc.get_cars()
-car_assets = idc.get_cars_assets()
+cars = idc.cars
+tracks = idc.tracks
 series_stats = idc.series_stats()
 car_classes = idc.get_carclasses()
 print(f"{bcolors.OKGREEN}Data fetched successfully!{bcolors.ENDC}")
 
-print("Parsing data...")
-for i in range(len(cars)):
-    cars[i] = {**cars[i], **car_assets[str(cars[i]["car_id"])]}
-print(f"{bcolors.OKGREEN}Data parsed successfully!{bcolors.ENDC}")
-
-# Delete and recreate all the cars in the cars array, identified by the car_id key
 print("Deleting and recreating cars...")
 mongo_client.cars.delete_many({"car_id": {"$in": [car["car_id"] for car in cars]}})
 mongo_client.cars.insert_many(cars)
+mongo_client.cars.create_index("car_id", unique=True)
 print(f"{bcolors.OKGREEN}Cars updated successfully!{bcolors.ENDC}")
 
-# Delete and recreate all the series in the series_stats array, identified by the series_id key
 print("Deleting and recreating series...")
 mongo_client.series.delete_many(
     {"series_id": {"$in": [series["series_id"] for series in series_stats]}}
 )
 mongo_client.series.insert_many(series_stats)
+mongo_client.series.create_index("series_id", unique=True)
 print(f"{bcolors.OKGREEN}Series updated successfully!{bcolors.ENDC}")
 
-# Delete and recreate all the car classes in the car_classes array, identified by the car_class_id key
 print("Deleting and recreating car classes...")
 mongo_client.car_classes.delete_many(
     {"car_class_id": {"$in": [car_class["car_class_id"] for car_class in car_classes]}}
 )
 mongo_client.car_classes.insert_many(car_classes)
+mongo_client.car_classes.create_index("car_class_id", unique=True)
 print(f"{bcolors.OKGREEN}Car classes updated successfully!{bcolors.ENDC}")
+
+print("Deleting and recreating tracks...")
+mongo_client.tracks.delete_many(
+    {"track_id": {"$in": [track["track_id"] for track in tracks]}}
+)
+mongo_client.tracks.insert_many(tracks)
+mongo_client.tracks.create_index("track_id", unique=True)
+print(f"{bcolors.OKGREEN}Tracks updated successfully!{bcolors.ENDC}")
