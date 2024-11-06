@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { carCategories, CarCategory } from '$lib/data/constants';
+	import Card from '$lib/components/Card.svelte';
 
 	interface Props {
 		serie: {
@@ -19,7 +20,7 @@
 	});
 </script>
 
-<div class="w-full overflow-hidden rounded-lg bg-white shadow-md">
+<Card>
 	<img
 		class="h-48 w-full object-contain"
 		src={serie.logo
@@ -52,6 +53,8 @@
 		</div>
 
 		<!-- Title -->
-		<h2 class="text-lg font-bold text-gray-900">{serie.series_name}</h2>
+		<a class="text-lg font-bold text-gray-900" href={'/series/' + serie.series_id}
+			>{serie.series_name}</a
+		>
 	</div>
-</div>
+</Card>

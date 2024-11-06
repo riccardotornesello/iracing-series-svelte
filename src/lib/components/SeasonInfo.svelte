@@ -8,9 +8,7 @@
 	const { season }: Props = $props();
 </script>
 
-<h3 class="text-xl font-semibold text-gray-700">
-	Season {season.season_year}-{season.season_quarter}
-</h3>
+<h2 class="text-xl font-semibold text-gray-700">Car classes</h2>
 
 {#each season.car_classes as carClass}
 	<CarClassInfo {carClass} />

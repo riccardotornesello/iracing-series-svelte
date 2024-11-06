@@ -9,7 +9,7 @@
 </script>
 
 {#if carClass}
-	<h4 class="text-lg font-semibold text-gray-700">{carClass.name}</h4>
+	<h3 class="text-lg font-semibold text-gray-700">{carClass.name}</h3>
 	<div class="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-4">
 		{#each carClass.cars_in_class as car}
 			<CarInfo {car} />
