@@ -10,26 +10,26 @@ export enum CarCategory {
 export const carCategories: Record<CarCategory, { name: string; color: string }> = {
 	[CarCategory.SportsCar]: {
 		name: 'Sports',
-		color: 'bg-blue-100'
+		color: 'blue'
 	},
 	[CarCategory.FormulaCar]: {
 		name: 'Formula',
-		color: 'bg-red-100'
+		color: 'red'
 	},
 	[CarCategory.Oval]: {
 		name: 'Oval',
-		color: 'bg-green-100'
+		color: 'green'
 	},
 	[CarCategory.DirtOval]: {
 		name: 'Dirt Oval',
-		color: 'bg-yellow-100'
+		color: 'yellow'
 	},
 	[CarCategory.Road]: {
 		name: 'Road',
-		color: 'bg-purple-100'
+		color: 'purple'
 	},
 	[CarCategory.DirtRoad]: {
 		name: 'Dirt Road',
-		color: 'bg-pink-100'
+		color: 'pink'
 	}
 };
