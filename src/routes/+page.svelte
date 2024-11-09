@@ -106,8 +106,8 @@
 
 	<!-- Grid -->
 	<div class="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-4">
-		{#each filteredItems as item}
-			<Serie serie={item} />
+		{#each filteredItems as item, index}
+			<Serie serie={item} loading={index < 4 ? 'eager' : 'lazy'} />
 		{/each}
 	</div>
 </div>

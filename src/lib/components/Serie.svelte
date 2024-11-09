@@ -10,9 +10,10 @@
 			active: boolean;
 			logo: string | null;
 		};
+		loading?: 'lazy' | 'eager';
 	}
 
-	const { serie }: Props = $props();
+	const { serie, loading = 'lazy' }: Props = $props();
 
 	const categoryTag = $derived({
 		class: carCategories[serie.category as CarCategory]?.color ?? 'bg-gray-100',
@@ -27,7 +28,7 @@
 			? 'https://images-static.iracing.com/img/logos/series/' + serie.logo
 			: 'https://via.placeholder.com/300'}
 		alt={serie.series_name}
-		loading="lazy"
+		{loading}
 	/>
 
 	<div class="p-4">
