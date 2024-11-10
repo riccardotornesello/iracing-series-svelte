@@ -1,5 +1,6 @@
 <script lang="ts">
 	import moment from 'moment';
+	import EnduranceDriversList from '$lib/components/EnduranceDriversList.svelte';
 
 	let raceStart = '2021-09-01T12:00:00Z';
 
@@ -41,24 +42,7 @@
 	}
 </script>
 
-<table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Liters/lap</th>
-			<th>Lap time</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each drivers as driver}
-			<tr>
-				<td>{driver.name}</td>
-				<td>{driver.litersPerLap}</td>
-				<td>{moment.utc(driver.lapTime).format('m:ss.S')}</td>
-			</tr>
-		{/each}
-	</tbody>
-</table>
+<EnduranceDriversList />
 
 <div class="relative my-6 h-screen max-w-md">
 	{#each stints as stint, i}
