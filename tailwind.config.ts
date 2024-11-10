@@ -3,6 +3,7 @@ import containerQueries from '@tailwindcss/container-queries';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
+import flowbitePlugin from 'flowbite/plugin';
 
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -17,5 +18,5 @@ export default {
 		}
 	],
 
-	plugins: [typography, forms, containerQueries, aspectRatio]
+	plugins: [typography, forms, containerQueries, aspectRatio, flowbitePlugin]
 } satisfies Config;

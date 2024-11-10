@@ -1,0 +1,19 @@
+export const colors = [
+	'red-500',
+	'blue-500',
+	'green-500',
+	'yellow-500',
+	'pink-500',
+	'purple-500',
+	'indigo-500',
+	'cyan-500',
+	'teal-500',
+	'lime-500',
+	'orange-500',
+	'amber-500',
+	'gray-500',
+	'warm-gray-500',
+	'true-gray-500',
+	'cool-gray-500',
+	'blue-gray-500'
+];
