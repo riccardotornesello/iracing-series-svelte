@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@inlang/paraglide-sveltekit": "^0.11.1",
+    "moment": "^2.30.1",
     "mongodb": "^6.10.0"
   },
   "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
